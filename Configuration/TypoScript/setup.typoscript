@@ -1,4 +1,11 @@
 plugin {
+    # The wishlist settings join the core catalog settings, which the wishlist plugin inherits below and the
+    # core catalog plugins - rendering this extension's toggle - read directly.
+    tx_productscore.settings {
+        pids.wishlistPage = {$products.pids.wishlistPage}
+        wishlist.enabled = {$products.wishlist.enabled}
+    }
+
     tx_productswishlist {
         view {
             templateRootPaths {
@@ -21,4 +28,10 @@ plugin {
     # extension's partial overrides the core no-op stub there by adding its own partial path at a higher
     # priority.
     tx_productscore.view.partialRootPaths.100 = EXT:products_wishlist/Resources/Private/Partials/
+}
+
+lib.productsWishlistToggle = EXTBASEPLUGIN
+lib.productsWishlistToggle {
+    extensionName = ProductsWishlist
+    pluginName = WishlistToggle
 }
